@@ -13,16 +13,16 @@ const MoviePage = (props) => {
     const [images, setImages] = useState([]);
 
     useEffect(() => {
-        getMovie().then(movies => {
+        getMovie(id).then(movies => {
             setMovie(movies)
         })
     },[id])
 
-      useEffect(() => {
-        getMovieImages().then(images => {
+    useEffect(() => {
+        getMovieImages(id).then(images => {
             setImages(images)
         })
-      }, []);
+    }, []);
 
   return (
     <>

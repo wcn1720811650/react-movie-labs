@@ -1,8 +1,7 @@
-import React, {useState, useEffect}  from "react";
+import React from "react";
 import { useParams } from 'react-router-dom';
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
-import { getMovie } from "../api/tmdb-api";
 import useMovie from "../hooks/useMovie";
 
 const MoviePage = (props) => {

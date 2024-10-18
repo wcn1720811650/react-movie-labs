@@ -22,7 +22,8 @@ const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => { 
     const [drawerOpen, setDrawerOpen] = useState(false);
-
+    console.log(movie.production_countries);
+    
   return (
     <>
     <Typography variant="h5" component="h3">
@@ -49,6 +50,14 @@ const MovieDetails = ({ movie }) => {
       <Chip icon={<MonetizationIcon />} label={`${movie.revenue?.toLocaleString()}`} />
       <Chip icon={<StarRate />} label={`${movie.vote_average} (${movie.vote_count}`}/>
       <Chip label={`Released: ${movie.release_date}`} />
+    </Paper>
+
+    <Paper sx={{ ...root }}>
+      <Chip label="Production Countries" color="primary"></Chip>
+      {movie.production_countries.map((country)=>(
+        <Chip label={country.name}></Chip>
+      ))}
+
     </Paper>
     
     <Fab

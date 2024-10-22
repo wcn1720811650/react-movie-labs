@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { getUpcomingMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import PlaylistAdd from '../components/cardIcons/playlistAdd'
+import { MoviesContext } from "../contexts/moviesContext";
 
 const UpcomingMoviesPage = () => {
-  
+
   const {data, error, isLoading, isError} = useQuery('upcoming',getUpcomingMovies)
+
+  const { addToMustWatch } = useContext(MoviesContext);
 
   if(isLoading) {
     return <Spinner />
@@ -17,18 +20,13 @@ const UpcomingMoviesPage = () => {
     return <h1> {error.message}</h1>
   }
   const movies = data.results
-  console.log(data.results);
-
-  const favorites = movies.filter(m => m.favorite)
-  localStorage.setItem('favorites', JSON.stringify(favorites))  
-
 
   return (
     <PageTemplate
       title='Upcoming Movies'
       movies={movies}
       action={(movie) => {
-        return <PlaylistAdd color="primary" fontSize="large" movie={movie} />
+        return <PlaylistAdd movie={movie} onAddToWatchlist={() => addToMustWatch(movie.id)}/>
       }}
     />
   );

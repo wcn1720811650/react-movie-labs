@@ -24,7 +24,8 @@ export default function MovieCard({ movie, action }) {
   } else{
     movie.favorite = false;
   }
-
+  console.log(movie);
+  
   const handleAddToFavorite = (e) =>{
     e.preventDefault();
     addToFavorites(movie)
@@ -85,6 +86,14 @@ export default function MovieCard({ movie, action }) {
             More Info ...
           </Button>
         </Link>
+        <div>
+      <Link to={`/recommendations/${movie.id}`}>
+      <Button variant="outlined" size="medium" color="primary">
+       Re co mmen da tions  
+        
+          </Button>
+      </Link>
+    </div>
         
       </CardActions>
     </Card>

@@ -1,66 +1,53 @@
 import React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { Link } from "react-router-dom";
-import { getMovieRecommendations } from "../../api/tmdb-api";
-import { excerpt } from "../../util";
 import { useQuery } from "react-query";
-import Spinner from '../spinner'
+import { getMovieRecommendations } from "../../api/tmdb-api";
+import Spinner from "../spinner";
+import Grid from "@mui/material/Grid2";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
 
-export default function MovieRecommendations({ movie }) {
-  const {data, error, isLoading, isError} = useQuery(
-    ["recommendations", { id:movie.id}],
+const AllMovieRecommendations = ({ recommendationId }) => {
+  const { data, error, isLoading, isError } = useQuery(
+    ["recommendations", { id: recommendationId }],
     getMovieRecommendations
   );
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   if (isError) {
-    return <h1>{error.message}</h1>
+    return <h1>{error.message}</h1>;
   }
 
   const recommendations = data.results;
-  console.log(recommendations);
-  
+
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{minWidth: 550}} aria-label="recommendations table">
-        <TableHead>
-          <TableRow>
-            <TableCell >Author</TableCell>
-            <TableCell align="center">Excerpt</TableCell>
-            <TableCell align="right">More</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {recommendations.map((r) => (
-            <TableRow key={r.id}>
-              <TableCell component="th" scope="row">
-                {r.author}
-              </TableCell>
-              <TableCell >{excerpt(r.content)}</TableCell>
-              <TableCell >
-              <Link
-                  to={`/recommendations/${r.id}`}
-                  state={{
-                      recommendation: r,
-                      movie: movie,
-                  }}
-                >
-                  Full Recommendations
-                </Link>
-              </TableCell>
-            </TableRow>
+    <Grid container spacing={5} style={{ padding: "15px" }}>
+      <Grid item xs={12}>
+        <h2>Recommended Movies</h2>
+        <ImageList
+          sx={{
+            width: "100%",
+            height: "100vh",
+          }}
+          cols={3}
+        >
+          {recommendations.map((rec) => (
+            <ImageListItem key={rec.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${rec.backdrop_path}`}
+                alt={rec.title}
+                loading="lazy"
+              />
+              <p>{rec.title}</p>
+              <p>{rec.overview}</p>
+            </ImageListItem>
           ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        </ImageList>
+      </Grid>
+    </Grid>
   );
-}
+};
+
+export default AllMovieRecommendations;

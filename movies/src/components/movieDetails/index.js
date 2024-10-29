@@ -9,7 +9,6 @@ import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
-import MovieRecommendations from "../movieRecommendations";
 const root = {
     display: "flex",
     justifyContent: "center",
@@ -22,7 +21,6 @@ const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => { 
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [subDrawerOpen,setSubDrawerOpen] = useState(false);
   return (
     <>
     <Typography variant="h5" component="h3">
@@ -69,22 +67,10 @@ const MovieDetails = ({ movie }) => {
       Reviews
     </Fab>
 
-    <Fab
-      color="secondary"
-      variant="extended"
-      onClick={() => setDrawerOpen(true)}
-      sx={{ position: "fixed", bottom: 2, right: 200 }}
-    >
-      <NavigationIcon />
-      Recommendations
-    </Fab>
-
     <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
       <MovieReviews movie={movie} />
     </Drawer>
-    <Drawer anchor="top" open={subDrawerOpen} onClose={() => setSubDrawerOpen(false)}>
-      <MovieRecommendations movie={movie} />
-    </Drawer>
+
   </>
   );
 };

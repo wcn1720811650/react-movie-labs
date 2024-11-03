@@ -47,6 +47,7 @@ const MovieDetails = ({ movie }) => {
       <Chip icon={<MonetizationIcon />} label={`${movie.revenue?.toLocaleString()}`} />
       <Chip icon={<StarRate />} label={`${movie.vote_average} (${movie.vote_count}`}/>
       <Chip label={`Released: ${movie.release_date}`} />
+      <Chip label={`Original Language: ${movie.original_language}`} />
     </Paper>
 
     <Paper sx={{ ...root }}>

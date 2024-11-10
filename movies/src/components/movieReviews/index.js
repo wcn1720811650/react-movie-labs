@@ -27,7 +27,7 @@ export default function MovieReviews({ movie }) {
   }
 
   const reviews = data.results;
-
+  
   // useEffect(() => {
   //   getMovieReviews(movie.id).then((reviews) => {
   //     setReviews(reviews);

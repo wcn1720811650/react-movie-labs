@@ -9,7 +9,6 @@ import {
   LocalFireDepartment as PopularityIcon,
   HomeWork as DepartmentIcon,
   Badge as BadgeIcon,
-  Margin,
 } from '@mui/icons-material';
 
 const MovieCreditPage = () => {

@@ -9,11 +9,7 @@ Name: Zixin Wang
 ### Features.
 [ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
  
-+ Feature 1
-+ Feature 2
-+ Feature 3
-+ etc
-+ etc
++ credits
 
 ## Setup requirements.
 
@@ -28,17 +24,18 @@ e.g.
 + popular movies - /movies/popular
 + treding movies - /trending/:day
 + movie recommendations - /recommendation/:id
++ credits introduction - /credits/:id
+
 
 ## Routing.
 
 [ List the __new routes__ supported by your app and state the associated page.]
 
-+ /blogs - displays all published blogs.
-+ /blogs/:id - displays a particular blog.
-+ /blogs/:id/comments - detail view of a particular blog and its comments.
 + /movies/nowplaying - display all nowplaying movies
 + /movies/popular - display all popular movies 
 + /trending/today - display trending today movies
++ /recommendations/:id - display trending today movies
++ /credits/:id - display credits of the movie
 
 [If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 

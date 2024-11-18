@@ -25,7 +25,7 @@ e.g.
 + treding movies - /trending/:day
 + movie recommendations - /recommendation/:id
 + credits introduction - /credits/:id
-
++ person combined credits - /person/:id/combined_credits
 
 ## Routing.
 
@@ -36,6 +36,7 @@ e.g.
 + /trending/today - display trending today movies
 + /recommendations/:id - display trending today movies
 + /credits/:id - display credits of the movie
++ /person/:id/combined_credits - display combined credits of the person
 
 [If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 

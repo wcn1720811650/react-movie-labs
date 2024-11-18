@@ -3,6 +3,7 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid2";
+import ScrollToTop from "react-scroll-to-top";
 
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
@@ -24,6 +25,7 @@ function MovieListPageTemplate({ movies, title, action }) {
 
   return (
     <Grid container>
+      <ScrollToTop smooth color="blue" />
       <Grid size={12}>
         <Header title={title} />
       </Grid>

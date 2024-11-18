@@ -11,6 +11,7 @@ import { getMovieCredits } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
+
 export default function MovieCredits({ movie }) {
   const {data, error, isLoading, isError} = useQuery(
     ["credits", { id:movie.id}],
@@ -59,7 +60,6 @@ export default function MovieCredits({ movie }) {
               <TableCell component="th" scope="row">{r.character}</TableCell>
               <TableCell > {r.name}</TableCell>
               <TableCell > {r.gender === "1"? "female":"male"}</TableCell>
-
               <TableCell > {r.known_for_department} </TableCell>
               <TableCell > {r.original_name}</TableCell>
               <TableCell > <Link
@@ -69,7 +69,7 @@ export default function MovieCredits({ movie }) {
                       movie: movie,
                   }}
                 >
-                  Full Review
+                  Details
                 </Link></TableCell>
 
                 

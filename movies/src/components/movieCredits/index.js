@@ -39,7 +39,7 @@ export default function MovieCredits({ movie }) {
             <TableCell align="left">gender</TableCell>
             <TableCell align="left">known for department</TableCell>
             <TableCell align="left">Original Name</TableCell>
-            <TableCell align="right">More</TableCell>
+            <TableCell align="left">More</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

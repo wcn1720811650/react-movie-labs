@@ -15,7 +15,6 @@ export const getMovies = () => {
   };
   
   export const getMovie = (args) => {
-    // console.log(args);
     const [, idpart] = args.queryKey;
     const {id} = idpart;
     return fetch(
@@ -109,7 +108,6 @@ export const getMovies = () => {
   };
 
   export const getMovieCredits = ({ queryKey }) => {
-    console.log(queryKey);
     const [, idPart] = queryKey;
     const {id} = idPart;
     return fetch(
@@ -126,6 +124,27 @@ export const getMovies = () => {
       throw error
    });
   };
+
+  export const getCombinedCredits = ({ queryKey }) => {
+    console.log(queryKey);
+    const [, idPart] = queryKey;
+    const { personId } = idPart;
+    return fetch(
+      `https://api.themoviedb.org/3/person/${personId}/combined_credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw new Error(error.status_message || "Something went wrong");
+          });
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+  
 
   export const getTrendingMovies = ({ queryKey }) => {
     const [, idPart] = queryKey;

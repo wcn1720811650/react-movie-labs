@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import PageTemplate from "../components/templateMoviePage";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography,Button } from "@mui/material";
 import {
   Transgender as TransgenderIcon,
   DriveFileRenameOutline as RenameIcon,
@@ -10,11 +10,16 @@ import {
   HomeWork as DepartmentIcon,
   Badge as BadgeIcon,
 } from '@mui/icons-material';
+import { Link } from "react-router-dom";
 
 const MovieCreditPage = () => {
   const { state: { movie, credit } } = useLocation();
   const { profile_path, name, original_name, gender, character, known_for_department, popularity } = credit;
-
+  console.log(movie);
+  console.log(credit);
+  
+  
+  
   return (
     <PageTemplate movie={movie}>
       <Typography variant="h4" component="h1" style={{margin:"10px 0"}}>Actor Introduction</Typography>
@@ -43,6 +48,16 @@ const MovieCreditPage = () => {
           <Typography variant="h5" style={{marginBottom:"20px"}}>
             <PopularityIcon color="primary" /> Popularity: {popularity}
           </Typography>
+          <Button
+            component={Link}
+            to={`/person/${credit.id}/combined_credits`}
+            state={{ personId: credit.id }}
+            variant="contained"
+            color="primary"
+            style={{ marginTop: "20px" }}
+          >
+            View Combined Credits
+          </Button>
         </Box>
       </Box>
     </PageTemplate>

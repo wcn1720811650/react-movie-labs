@@ -16,6 +16,7 @@ import NowPlayingMoviesPage from "./pages/nowPlayingPage";
 import PopularMoviesPage from "./pages/popularMoviesPage";
 import TredingPage from "./pages/trendingTodayPage";
 import MovieCreditPage from "./pages/movieCreditPage";
+import CombinedCreditsPage from "./pages/combinedCreditsPage";
 
 const queryClient = new QueryClient({
   defaultOptions:{
@@ -45,7 +46,8 @@ const App = () => {
           <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
           <Route path="/movies/nowplaying" element={<NowPlayingMoviesPage />} />
           <Route path="/movies/popular" element={<PopularMoviesPage />} />
-        </Routes>
+          <Route path="/person/:id/combined_credits" element={<CombinedCreditsPage />} />
+          </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />

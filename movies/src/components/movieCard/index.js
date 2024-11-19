@@ -17,7 +17,7 @@ import { MoviesContext } from "../../contexts/moviesContext";
 
 
 export default function MovieCard({ movie, action }) { 
-  const { favorites,addToFavorites } = useContext(MoviesContext);
+  const { favorites } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -26,10 +26,6 @@ export default function MovieCard({ movie, action }) {
   }
   console.log(movie);
   
-  const handleAddToFavorite = (e) =>{
-    e.preventDefault();
-    addToFavorites(movie)
-  }
   // const movie = props.movie;
 
   // const handleAddToFavorite = (e) => {

@@ -147,10 +147,9 @@ export const getMovies = () => {
   
 
   export const getTrendingMovies = ({ queryKey }) => {
-    const [, idPart] = queryKey;
-    const { day } = idPart;
+    const [, {timeWindow}] = queryKey;
     return fetch(
-      `https://api.themoviedb.org/3/trending/movie/${day}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+      `https://api.themoviedb.org/3/trending/movie/${timeWindow}?api_key=${process.env.REACT_APP_TMDB_KEY}`
     ).then( (response) => {
       if (!response.ok) {
         return response.json().then((error) => {

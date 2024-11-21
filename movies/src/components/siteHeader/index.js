@@ -4,18 +4,17 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess'
+import { red } from "@mui/material/colors";
 
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
-  const [, setAnchorEl] = useState(null);
-  const [subMenuAnchor, setSubMenuAnchor] = useState(null)
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const menuOptions = [
@@ -35,17 +34,14 @@ const SiteHeader = () => {
 
   const handleMenuSelect = (pageURL) => {
     navigate(pageURL);
-    setAnchorEl(null);
-    setSubMenuAnchor(null)
+    setSubMenuOpen(false);
   };
   
-  const handleSubMenuOpen = (event) =>{
-    setSubMenuAnchor(event.currentTarget)
+  const handleSubMenuOpen = () =>{
+    setSubMenuOpen(!subMenuOpen)
   }
 
-  const handleSubMenuClose = (event) =>{
-    setSubMenuAnchor(event.currentTarget)
-  }
+  
 
   return (
      <>
@@ -60,13 +56,13 @@ const SiteHeader = () => {
           <div>
             {menuOptions.map((opt) =>
               opt.submenu ? (
-                <div key={opt.label} style={{ display: "inline-block" }}>
+                <div key={opt.label} style={{ display: "inline-block", position:"relative" }}>
                   <Button
                     color="inherit"
                     onClick={handleSubMenuOpen}
                     aria-haspopup="true"
                     endIcon={
-                      subMenuAnchor ? (
+                      subMenuOpen ? (
                         <ExpandLessIcon />
                       ) : (
                         <ExpandMoreIcon />
@@ -75,20 +71,30 @@ const SiteHeader = () => {
                   >
                     {opt.label}
                   </Button>
-                  <Menu
-                    anchorEl={subMenuAnchor}
-                    open={Boolean(subMenuAnchor)}
-                    onClose={handleSubMenuClose}
-                  >
-                    {opt.submenu.map((subOpt) => (
-                      <MenuItem
-                        key={subOpt.label}
-                        onClick={() => handleMenuSelect(subOpt.path)}
-                      >
-                        {subOpt.label}
-                      </MenuItem>
-                    ))}
-                  </Menu>
+                  {subMenuOpen && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "100%",
+                        left: 0,
+                        backgroundColor: "#fff",
+                        border: "1px solid rgba(0, 0, 0, 0.2)",
+                        borderRadius: "4px",
+                        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                        zIndex: 1300,
+                      }}
+                    >
+                      {opt.submenu.map((subOpt) => (
+                        <MenuItem
+                          key={subOpt.label}
+                          onClick={() => handleMenuSelect(subOpt.path)}
+                          style={{color:"black"}}
+                        >
+                          {subOpt.label}
+                        </MenuItem>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <Button

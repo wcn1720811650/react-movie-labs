@@ -1,47 +1,42 @@
 # Assignment 1 - ReactJS app.
 
 Name: Zixin Wang
+Student ID: 20109119
 
 ## Overview.
 
-[A brief statement on the content of this repository.]
+This repository contains a lot of page such as Home, favourite, upcoming, nowplaying, popular, trending today/this week, details of mivie, movie review, credits introduction pages and combinedCredits page. Also there are some featuresm, for example we can filter the movie by name, genre and release date. Also back to top feature is added. We can also learn about the actor from a movie and learn a movie from an actor. We will recommend movies to you by a movie. Finally, we can learn about the combined credits from a actor.
 
 ### Features.
-[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
  
 + credits
++ release date feature
++ Back to top feature
++ Recommendation
++ Trending choose day or week
 
 ## Setup requirements.
 
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
+You need to enter the movies folder in the terminal and run the npm install command to install the required packages. After the installation is complete, you can enter the npm run start command to run my project.
 
 ## API endpoints.
 
-[ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
-
-e.g.
 + nowplaying movies - /movies/nowplaying
 + popular movies - /movies/popular
-+ treding movies - /trending/:day
++ treding today/this week movies - /trending/:timeWindow
 + movie recommendations - /recommendation/:id
 + credits introduction - /credits/:id
 + person combined credits - /person/:id/combined_credits
 
 ## Routing.
 
-[ List the __new routes__ supported by your app and state the associated page.]
-
 + /movies/nowplaying - display all nowplaying movies
 + /movies/popular - display all popular movies 
-+ /trending/today - display trending today movies
++ /trending/:timeWindow - display trending today/this week movies
 + /recommendations/:id - display trending today movies
 + /credits/:id - display credits of the movie
 + /person/:id/combined_credits - display combined credits of the person
 
-[If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
-
 ## Independent learning (If relevant).
 
-Itemize the technologies/techniques you researched independently and adopted in your project, 
-i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these 
-(we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).
+Through this project, I found that the writing methods of APIs are roughly the same. Except for specific dynamic parameters, other things basically do not need to be modified. And in previous experiments, many pages have been written for us. I only need to modify the parameters passed to the component to complete part of the page content. Secondly, tmdb gave me many APIs to choose from, and told me what the API is used for, what parameters are required, and what type of request it is. It also gave me a sample URL, which made it very convenient for me to add the content I needed. In the function of returning to the top, I referred to the tips in the article https://www.delftstack.com/zh/howto/react/scroll-to-top-in-react/#google_vignette, which allowed me to easily implement this function. I learned the importance of components for development. From https://v4.mui.com/zh/components/menus/, I learned how to implement the drop-down box function. At the same time, I also used the various icons provided by umi to make my project look more exquisite.

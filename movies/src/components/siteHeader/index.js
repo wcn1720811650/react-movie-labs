@@ -2,25 +2,20 @@ import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
-import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import ExpandLessIcon from '@mui/icons-material/ExpandLess'
+
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-const SiteHeader = ({ history }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  
+const SiteHeader = () => {
+  const [, setAnchorEl] = useState(null);
+  const [subMenuAnchor, setSubMenuAnchor] = useState(null)
   const navigate = useNavigate();
 
   const menuOptions = [
@@ -29,20 +24,31 @@ const SiteHeader = ({ history }) => {
     { label: "upcoming", path: "/movies/upcoming" },
     { label: "NowPlaying", path: "/movies/nowplaying" },
     { label: "popular", path: "/movies/popular" },
-    { label: "trending today", path: "/trending/today" },
-
+    {
+      label: "Trending",
+      submenu: [
+        { label: "Day", path: "/trending/day" },
+        { label: "This Week", path: "/trending/week" },
+      ],
+    },
   ];
 
   const handleMenuSelect = (pageURL) => {
-    navigate(pageURL, { replace: true });
+    navigate(pageURL);
+    setAnchorEl(null);
+    setSubMenuAnchor(null)
   };
+  
+  const handleSubMenuOpen = (event) =>{
+    setSubMenuAnchor(event.currentTarget)
+  }
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const handleSubMenuClose = (event) =>{
+    setSubMenuAnchor(event.currentTarget)
+  }
 
   return (
-    <>
+     <>
       <AppBar position="fixed" color="secondary">
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
@@ -51,55 +57,50 @@ const SiteHeader = ({ history }) => {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             All you ever wanted to know about Movies!
           </Typography>
-            {isMobile ? (
-              <>
-                <IconButton
-                  aria-label="menu"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={open}
-                  onClose={() => setAnchorEl(null)}
-                >
-                  {menuOptions.map((opt) => (
-                    <MenuItem
-                      key={opt.label}
-                      onClick={() => handleMenuSelect(opt.path)}
-                    >
-                      {opt.label}
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </>
-            ) : (
-              <>
-                {menuOptions.map((opt) => (
+          <div>
+            {menuOptions.map((opt) =>
+              opt.submenu ? (
+                <div key={opt.label} style={{ display: "inline-block" }}>
                   <Button
-                    key={opt.label}
                     color="inherit"
-                    onClick={() => handleMenuSelect(opt.path)}
+                    onClick={handleSubMenuOpen}
+                    aria-haspopup="true"
+                    endIcon={
+                      subMenuAnchor ? (
+                        <ExpandLessIcon />
+                      ) : (
+                        <ExpandMoreIcon />
+                      )
+                    }
                   >
                     {opt.label}
                   </Button>
-                ))}
-              </>
+                  <Menu
+                    anchorEl={subMenuAnchor}
+                    open={Boolean(subMenuAnchor)}
+                    onClose={handleSubMenuClose}
+                  >
+                    {opt.submenu.map((subOpt) => (
+                      <MenuItem
+                        key={subOpt.label}
+                        onClick={() => handleMenuSelect(subOpt.path)}
+                      >
+                        {subOpt.label}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </div>
+              ) : (
+                <Button
+                  key={opt.label}
+                  color="inherit"
+                  onClick={() => handleMenuSelect(opt.path)}
+                >
+                  {opt.label}
+                </Button>
+              )
             )}
+          </div>
         </Toolbar>
       </AppBar>
       <Offset />

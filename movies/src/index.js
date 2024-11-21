@@ -38,7 +38,7 @@ const App = () => {
           <Route path="/credits/:id" element={ <MovieCreditPage /> } />
           <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
           <Route path="/movies/:id" element={<MoviePage />} />
-          <Route path="/trending/today" element={<TredingPage />} />
+          <Route path="/trending/:timeWindow" element={<TredingPage />} />
           <Route path="/recommendations/:recommendationId" element={<MovieRecommendationPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="*" element={ <Navigate to="/" /> } />

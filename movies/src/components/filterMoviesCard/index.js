@@ -24,7 +24,7 @@ const formControl =
 export default function FilterMoviesCard(props) {
 
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
-
+  
   if (isLoading) {
     return <Spinner />;
   }
@@ -39,7 +39,7 @@ export default function FilterMoviesCard(props) {
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
-    props.onUserInput(type, value); // NEW
+    props.onUserInput(type, value); 
   };
 
   const handleTextChange = (e, props) => {
@@ -49,6 +49,12 @@ export default function FilterMoviesCard(props) {
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
   };
+  const handleStartDateChange = (e) =>{
+    handleChange(e, "startDate", e.target.value)
+  }
+  const handleEndDateChange = (e) =>{
+    handleChange(e, "endDate", e.target.value)
+  }
 
   return (
     <Card 
@@ -88,6 +94,29 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+        
+        <TextField
+          sx={{...formControl}}
+          id="start-date"
+          label="Start Date"
+          type="date"
+          variant="filled"
+          value={props.startDateFilter}
+          onChange={handleStartDateChange}
+        >
+        </TextField>
+
+        <TextField
+          sx={{...formControl}}
+          id="end-date"
+          label="End Date"
+          type="date"
+          variant="filled"
+          value={props.endDateFilter}
+          onChange={handleEndDateChange}
+        >
+        </TextField>
+
       </CardContent>
       <CardMedia
         sx={{ height: 300 }}

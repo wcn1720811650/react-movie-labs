@@ -8,6 +8,9 @@ import ScrollToTop from "react-scroll-to-top";
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
+  const [startDateFilter,setStartDateFilter] = useState("");
+  const [endDateFilter, setEndDateFilter] = useState("")
+
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
@@ -16,11 +19,23 @@ function MovieListPageTemplate({ movies, title, action }) {
     })
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
-    });
+    })
+    .filter((m) => {
+      const releaseDate = new Date(m.release_date);
+      const startDate = new Date(startDateFilter);
+      const endDate = new Date(endDateFilter);
+
+      const afterStartDate = startDateFilter ? releaseDate >= startDate : true;
+      const beforeEndDate = endDateFilter ? releaseDate <= endDate : true;
+
+      return afterStartDate && beforeEndDate;
+    })
 
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
-    else setGenreFilter(value);
+    else if (type === "genre") setGenreFilter(value);
+    else if (type === "startDate") setStartDateFilter(value);
+    else if (type === "endDate") setEndDateFilter(value);
   };
 
   return (
@@ -39,6 +54,8 @@ function MovieListPageTemplate({ movies, title, action }) {
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
+            startDateFilter={startDateFilter}
+            endDateFilter={endDateFilter}
           />
         </Grid>
         <MovieList action={action} movies={displayedMovies}></MovieList>

@@ -131,9 +131,9 @@ export default function FilterMoviesCard(props) {
             <MenuItem value="origin">Origin</MenuItem>
             <MenuItem value="dateAsc">Release Date Ascending</MenuItem>
             <MenuItem value="dateDesc">Release Date Descending</MenuItem>
-            <MenuItem value="popularityAsc">Popularity Descending</MenuItem>
+            <MenuItem value="popularityAsc">Popularity Ascending</MenuItem>
             <MenuItem value="popularityDesc">Popularity Descending</MenuItem>
-            <MenuItem value="voteAsc">Vote Descending</MenuItem>
+            <MenuItem value="voteAsc">Vote Ascending</MenuItem>
             <MenuItem value="voteDesc">Vote Descending</MenuItem>
 
           </Select>

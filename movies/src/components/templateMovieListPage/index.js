@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
-import Grid from "@mui/material/Grid2";
 import ScrollToTop from "react-scroll-to-top";
-import { height } from "@mui/system";
+
 
 function MovieListPageTemplate({ movies, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
@@ -55,20 +54,28 @@ function MovieListPageTemplate({ movies, title, action }) {
   };
 
   return (
-    <Grid container spacing={2} >
-      <ScrollToTop smooth color="blue" />
-      <Grid item size={12}>
+    <div style={{ padding: "16px", height: "100vh", display: "flex", flexDirection: "column" }}>
+      <div >
         <Header title={title} />
-      </Grid>
+      </div>
 
-      <Grid item sx={{ display:"flex", flexDirection:"row"}}>
-        <Grid 
-          key="find" 
-          item
-          xs="auto"
-          sx={{ minWidth: "250px" }}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "flex-start",
+          height: "calc(100vh - 64px)", 
+          gap: "16px",
+        }}
+      >
+        
+        <div
+          style={{
+            maxWidth: "300px", 
+            height: "100%", 
+          }}
         >
-          <FilterCard 
+          <FilterCard
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
@@ -76,12 +83,22 @@ function MovieListPageTemplate({ movies, title, action }) {
             endDateFilter={endDateFilter}
             sortOrder={sortOrder}
           />
-        </Grid>
-        <Grid>
-          <MovieList action={action} movies={displayedMovies}></MovieList>
-        </Grid>
-      </Grid>
-    </Grid>
+        </div>
+
+
+        <div
+          style={{
+            flexGrow: 1, 
+            height: "100%", 
+          }}
+        >
+          <MovieList action={action} movies={displayedMovies} />
+        </div>
+      </div>
+
+
+      <ScrollToTop smooth color="blue" />
+    </div>
   );
 }
 export default MovieListPageTemplate;

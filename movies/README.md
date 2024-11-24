@@ -10,10 +10,11 @@ This repository contains a lot of page such as Home, favourite, upcoming, nowpla
 ### Features.
  
 + credits
-+ release date feature
 + Back to top feature
-+ Recommendation
 + Trending choose day or week
++ sort by different requirement
++ filter by releaseDate
++ pagination features
 
 ## Setup requirements.
 
@@ -39,4 +40,4 @@ You need to enter the movies folder in the terminal and run the npm install comm
 
 ## Independent learning (If relevant).
 
-Through this project, I found that the writing methods of APIs are roughly the same. Except for specific dynamic parameters, other things basically do not need to be modified. And in previous experiments, many pages have been written for us. I only need to modify the parameters passed to the component to complete part of the page content. Secondly, tmdb gave me many APIs to choose from, and told me what the API is used for, what parameters are required, and what type of request it is. It also gave me a sample URL, which made it very convenient for me to add the content I needed. In the function of returning to the top, I referred to the tips in the article https://www.delftstack.com/zh/howto/react/scroll-to-top-in-react/#google_vignette, which allowed me to easily implement this function. I learned the importance of components for development. From https://v4.mui.com/zh/components/menus/, I learned how to implement the drop-down box function. At the same time, I also used the various icons provided by umi to make my project look more exquisite.
+Through this project, I found that the writing methods of APIs are roughly the same. Except for specific dynamic parameters, other things basically do not need to be modified. And in previous experiments, many pages have been written for us. I only need to modify the parameters passed to the component to complete part of the page content. Secondly, tmdb gave me many APIs to choose from, and told me what the API is used for, what parameters are required, and what type of request it is. It also gave me a sample URL, which made it very convenient for me to add the content I needed. In the function of returning to the top, I referred to the tips in the article https://www.delftstack.com/zh/howto/react/scroll-to-top-in-react/#google_vignette, which allowed me to easily implement this function. I learned the importance of components for development. From https://v4.mui.com/zh/components/menus/, I learned how to implement the drop-down box function. At the same time, I also used the various icons provided by umi to make my project look more exquisite. I learn how to sort form https://blog.csdn.net/qq_46124502/article/details/106423931 which is a famous learning communities in China.

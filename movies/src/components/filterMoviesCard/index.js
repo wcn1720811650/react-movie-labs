@@ -55,6 +55,9 @@ export default function FilterMoviesCard(props) {
   const handleEndDateChange = (e) =>{
     handleChange(e, "endDate", e.target.value)
   }
+  const handleSortOrder = (e) => {
+    handleChange(e, "sortOrder", e.target.value)
+  }
 
   return (
     <Card 
@@ -116,6 +119,25 @@ export default function FilterMoviesCard(props) {
           onChange={handleEndDateChange}
         >
         </TextField>
+
+        <FormControl sx={{...formControl}}>
+          <InputLabel id="sort-label"> Sort Order </InputLabel>
+          <Select
+            labelId="sort-label"
+            id="sort-select"
+            value={props.sortOrder}
+            onChange={handleSortOrder}
+          >
+            <MenuItem value="origin">Origin</MenuItem>
+            <MenuItem value="dateAsc">Release Date Ascending</MenuItem>
+            <MenuItem value="dateDesc">Release Date Descending</MenuItem>
+            <MenuItem value="popularityAsc">Popularity Descending</MenuItem>
+            <MenuItem value="popularityDesc">Popularity Descending</MenuItem>
+            <MenuItem value="voteAsc">Vote Descending</MenuItem>
+            <MenuItem value="voteDesc">Vote Descending</MenuItem>
+
+          </Select>
+        </FormControl>
 
       </CardContent>
       <CardMedia
